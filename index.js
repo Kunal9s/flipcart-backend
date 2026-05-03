@@ -12,23 +12,45 @@ const app = express();
 
 dotenv.config()
 
-app.use(cors());
+// Middlewares
+app.use(cors({
+  origin: 'https://flipcart-frontend-eight.vercel.app/?_vercel_share=7rzAPuEcSkn3eXPNakJO6ja2LwrsT2Xl',
+  credentials: true
+}));
+
 app.use(bodyParser.json({ extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Routes
 app.use('/', Router);
+
+// Health check route (important for render)
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+})
 
 const PORT = process.env.PORT || 8000;
 
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 
+// Connect DB + Start Server
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected successfully"))
-  .catch((error) => console.log("MongoDB connection error:", error));
+  .then(() => {
+    console.log("MongoDB connected successfully");
+  
+    app.listen(PORT, () => {
+      console.log(`Server is running successfully on port ${PORT}`);
+    });
 
-app.listen(PORT, () => console.log(`Server is running successfully on port ${PORT}`));
+    // send data after DB is ready
+    DefaultData();
+  })
+  .catch((error) => {
+    console.log("MongoDB connection error:", error);
+  });
 
-DefaultData()
+
 
 // export let paytmMerchantKey = process.env.PAYTM_MERCHANT_KEY;
 // export let paytmParams = {};
