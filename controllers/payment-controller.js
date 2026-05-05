@@ -18,7 +18,7 @@ export const addPaymentGateway = async (req, res) => {
     paytmParams["ORDER_ID"] = uuid();
     paytmParams["CUST_ID"] = process.env.PAYTM_CUST_ID;
     paytmParams["TXN_AMOUNT"] = "100";
-    paytmParams["CALLBACK_URL"] = "http://localhost:8000/callback";
+    paytmParams["CALLBACK_URL"] = "https://flipcart-backend-smop.onrender.com/callback";
     paytmParams["EMAIL"] = "test@gmail.com";
     paytmParams["MOBILE_NO"] = "9999999999";
 

@@ -14,7 +14,9 @@ dotenv.config()
 
 // Middlewares
 app.use(cors({
-  origin: 'https://flipcart-frontend-eight.vercel.app/?_vercel_share=7rzAPuEcSkn3eXPNakJO6ja2LwrsT2Xl',
+  origin: [
+    'http://localhost:3000',
+    'https://flipkart-frontend-eight.vercel.app/?_vercel_share=7rzAPuEcSkn3eXPNakJO6ja2LwrsT2Xl'],
   credentials: true
 }));
 
