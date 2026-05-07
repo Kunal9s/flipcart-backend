@@ -16,7 +16,7 @@ dotenv.config()
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://flipkart-frontend-eight.vercel.app/?_vercel_share=7rzAPuEcSkn3eXPNakJO6ja2LwrsT2Xl'],
+    'https://flipcart-frontend-ryij.vercel.app'],
   credentials: true
 }));
 
